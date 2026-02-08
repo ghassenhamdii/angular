@@ -1,0 +1,61 @@
+<div class="page">
+
+  <!-- HEADER -->
+  <nav class="navbar">
+    <div class="logo">Campus Ideas</div>
+    <div class="menu">
+      <a href="#">Accueil</a>
+      <a href="#" class="active">Suggestions</a>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="container">
+    <h1>Liste des suggestions</h1>
+
+    <input
+      type="text"
+      class="search"
+      [(ngModel)]="searchText"
+      placeholder="Rechercher une suggestion"
+    />
+
+    <div class="card" *ngFor="let s of suggestions">
+
+      <h2>{{ s.title }}</h2>
+
+      <div class="meta">
+        <span class="category">{{ s.category }}</span>
+        <span class="date">{{ s.date | date:'dd MMM yyyy' }}</span>
+      </div>
+
+      <p>{{ s.description }}</p>
+
+      <!-- STATUT -->
+      <span
+        class="badge accepted"
+        *ngIf="s.status === 'acceptee'"
+      >
+        ACCEPTÉE
+      </span>
+
+      <span
+        class="badge refused"
+        *ngIf="s.status === 'refusee'"
+      >
+        REFUSÉE
+      </span>
+
+      <!-- ACTIONS -->
+      <div class="actions" *ngIf="s.status !== 'refusee'">
+        <button class="btn like" (click)="like(s)">
+          👍 Like {{ s.nbLikes }}
+        </button>
+
+        <button class="btn fav" (click)="addToFavorites(s)">
+          🤍 Ajouter aux favoris
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

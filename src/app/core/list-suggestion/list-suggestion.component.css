@@ -1,0 +1,126 @@
+/* PAGE */
+.page {
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+  min-height: 100vh;
+}
+
+/* NAVBAR */
+.navbar {
+  background: #2c3e50;
+  color: white;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+.menu .active {
+  background: #0d6efd;
+}
+
+/* CONTAINER */
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+}
+
+/* TITLE */
+.container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* SEARCH */
+.search {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 25px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* CARD */
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.card h2 {
+  margin-bottom: 10px;
+}
+
+/* META */
+.meta {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.category {
+  color: #0d6efd;
+  font-weight: bold;
+}
+
+.date {
+  margin-left: 10px;
+}
+
+/* BADGES */
+.badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.accepted {
+  background: #d1f7d6;
+  color: #198754;
+}
+
+.refused {
+  background: #f8d7da;
+  color: #dc3545;
+}
+
+/* ACTIONS */
+.actions {
+  margin-top: 15px;
+}
+
+.btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.like {
+  background: #0d6efd;
+  color: white;
+}
+
+.fav {
+  background: #f1f1f1;
+}
