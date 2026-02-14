@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
-import { ListSuggestionComponent } from './core/list-suggestion/list-suggestion.component';
+import { RouterOutlet } from '@angular/router';
+import { HeaderComponent } from './core/header/header.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ListSuggestionComponent],
-  template: `<app-list-suggestion></app-list-suggestion>`,
-
+  imports: [RouterOutlet, HeaderComponent],
+  template: `
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+  `,
 })
 export class AppComponent {}
