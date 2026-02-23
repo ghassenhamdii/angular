@@ -1,61 +1,77 @@
 <div class="page">
 
-  <!-- HEADER -->
-  <nav class="navbar">
-    <div class="logo">Campus Ideas</div>
-    <div class="menu">
-      <a href="#">Accueil</a>
-      <a href="#" class="active">Suggestions</a>
-    </div>
-  </nav>
+  <h2 class="title">Liste des suggestions</h2>
 
-  <!-- CONTENT -->
-  <div class="container">
-    <h1>Liste des suggestions</h1>
+  <button class="btn-add" [routerLink]="['/suggestions/add']">Ajouter une suggestion</button>
 
-    <input
-      type="text"
-      class="search"
-      [(ngModel)]="searchText"
-      placeholder="Rechercher une suggestion"
-    />
+  <!-- Recherche -->
+  <input
+    class="search"
+    type="text"
+    placeholder="Rechercher une suggestion"
+    [(ngModel)]="searchText"
+  />
 
-    <div class="card" *ngFor="let s of suggestions">
+  <div class="layout">
 
-      <h2>{{ s.title }}</h2>
+    <!-- LISTE SUGGESTIONS -->
+    <div class="list">
+      <div class="card" *ngFor="let s of filteredSuggestions()">
 
-      <div class="meta">
-        <span class="category">{{ s.category }}</span>
-        <span class="date">{{ s.date | date:'dd MMM yyyy' }}</span>
+        <div class="card-header">
+          <h3 class="card-title">{{ s.title }}</h3>
+          <p class="meta">
+            <span class="category">{{ s.category }}</span>
+            <span class="dot">•</span>
+            <span class="date">{{ s.date | date:'dd/MM/yyyy' }}</span>
+          </p>
+        </div>
+
+        <p class="desc">{{ s.description }}</p>
+
+        <!-- Status -->
+        <div class="badges">
+          <span class="badge accepted" *ngIf="s.status === 'acceptee'">ACCEPTÉE</span>
+          <span class="badge refused" *ngIf="s.status === 'refusee'">REFUSÉE</span>
+          <span class="badge pending" *ngIf="s.status === 'en_attente'">EN ATTENTE</span>
+        </div>
+
+        <!-- Actions (cachées si refusée) -->
+        <div class="actions" *ngIf="s.status !== 'refusee'">
+
+          <button class="btn btn-like" (click)="like(s)">
+            👍 Like <span class="count">{{ s.nbLikes }}</span>
+          </button>
+
+          <button
+            class="btn btn-fav"
+            (click)="addToFavorites(s)"
+            [disabled]="isFavorite(s)"
+          >
+            ⭐ {{ isFavorite(s) ? 'Déjà en favoris' : 'Ajouter aux favoris' }}
+          </button>
+
+          <button class="btn btn-detail" [routerLink]="['/suggestions/detail', s.id]">
+            📄 Voir détails
+          </button>
+
+        </div>
       </div>
+    </div>
 
-      <p>{{ s.description }}</p>
+    <!-- FAVORIS -->
+    <div class="favorites">
+      <h4 class="fav-title">Favoris</h4>
 
-      <!-- STATUT -->
-      <span
-        class="badge accepted"
-        *ngIf="s.status === 'acceptee'"
-      >
-        ACCEPTÉE
-      </span>
+      <p class="empty" *ngIf="favorites.length === 0">
+        Aucune suggestion en favoris pour le moment.
+      </p>
 
-      <span
-        class="badge refused"
-        *ngIf="s.status === 'refusee'"
-      >
-        REFUSÉE
-      </span>
-
-      <!-- ACTIONS -->
-      <div class="actions" *ngIf="s.status !== 'refusee'">
-        <button class="btn like" (click)="like(s)">
-          👍 Like {{ s.nbLikes }}
-        </button>
-
-        <button class="btn fav" (click)="addToFavorites(s)">
-          🤍 Ajouter aux favoris
-        </button>
+      <div class="fav-item" *ngFor="let f of favorites">
+        <div class="fav-name">{{ f.title }}</div>
+        <div class="fav-sub">{{ f.category }}</div>
       </div>
     </div>
+
   </div>
 </div>
